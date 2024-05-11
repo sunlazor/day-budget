@@ -1,0 +1,26 @@
+services:
+  roadrunner:
+    build:
+      dockerfile: docker/roadrunner/Dockerfile
+    container_name: roadrunner
+#    image:
+    ports:
+      - "8080:8080"
+    working_dir: "/srv"
+    networks:
+      - anxiety
+    volumes:
+      - ./:/srv
+    environment:
+      PHP_IDE_CONFIG: "serverName=localhost"
+      APP_ENV: dev
+#    command: sh -c "composer install && bin/console c:c && rr serve"
+#    command: sh -c "composer self-update --update-keys && composer diagnose && composer install && rr serve"
+#    command: sh -c "composer install && rr --help"
+#    command: sh -c "rr get-binary -f \"2024.1\""
+    command: sh -c "composer install && rr serve"
+
+networks:
+  anxiety:
+    name: anxiety
+    driver: bridge

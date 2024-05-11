@@ -1,0 +1,25 @@
+{
+  "name": "sunlazor/run",
+  "type": "project",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "Runner\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "sunlazor"
+    }
+  ],
+  "require": {
+    "spiral/roadrunner-cli": "^2.6",
+    "spiral/roadrunner-worker": "^3.5",
+    "spiral/roadrunner-http": "^3.5",
+    "psr/http-server-handler": "^1.0",
+    "nyholm/psr7": "^1.8",
+    "nyholm/psr7-server": "^1.1"
+  }
+}
