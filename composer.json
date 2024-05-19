@@ -1,25 +1,73 @@
 {
-  "name": "sunlazor/run",
-  "type": "project",
-  "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "autoload": {
-    "psr-4": {
-      "Runner\\": "src/"
+    "name": "sunlazor/budget",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "baldinof/roadrunner-bundle": "^3.1",
+        "symfony/console": "7.0.*",
+        "symfony/dotenv": "7.0.*",
+        "symfony/flex": "^2",
+        "symfony/framework-bundle": "7.0.*",
+        "symfony/runtime": "7.0.*",
+        "symfony/yaml": "7.0.*"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "sort-packages": true
+    },
+    "authors": [
+        {
+            "name": "sunlazor"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php82": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.0.*"
+        }
     }
-  },
-  "authors": [
-    {
-      "name": "sunlazor"
-    }
-  ],
-  "require": {
-    "spiral/roadrunner-cli": "^2.6",
-    "spiral/roadrunner-worker": "^3.5",
-    "spiral/roadrunner-http": "^3.5",
-    "psr/http-server-handler": "^1.0",
-    "nyholm/psr7": "^1.8",
-    "nyholm/psr7-server": "^1.1"
-  }
 }

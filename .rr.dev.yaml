@@ -7,9 +7,9 @@ server:
 
 http:
   address: 0.0.0.0:8080
-  pool:
-    debug: false
   middleware: [ "static", "gzip" ]
+  pool:
+    debug: true
   uploads:
     forbid: [ ".php", ".exe", ".bat" ]
   static:
@@ -17,7 +17,7 @@ http:
     forbid: [ ".php", ".htaccess" ]
 
 logs:
-  mode: production
+  mode: development
   channels:
     http:
       level: debug # Log all http requests, set to info to disable
@@ -25,13 +25,4 @@ logs:
       level: info # Everything written to worker stderr is logged
       mode: raw
     metrics:
-      level: error
-
-# Uncomment to use metrics integration
-# rpc:
-#   listen: tcp://127.0.0.1:6001
-
-# Uncomment to use metrics integration
-# metrics:
-#   # prometheus client address (path /metrics added automatically)
-#   address: "0.0.0.0:9180"
+      level: debug

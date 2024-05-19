@@ -1,7 +1,7 @@
 services:
   roadrunner:
     build:
-      dockerfile: docker/roadrunner/Dockerfile
+      dockerfile: .docker/roadrunner/Dockerfile
     container_name: roadrunner
 #    image:
     ports:
@@ -18,7 +18,10 @@ services:
 #    command: sh -c "composer self-update --update-keys && composer diagnose && composer install && rr serve"
 #    command: sh -c "composer install && rr --help"
 #    command: sh -c "rr get-binary -f \"2024.1\""
-    command: sh -c "composer install && rr serve"
+#    command: sh -c "composer install && rr serve"
+#    command: sh -c "composer create-project symfony/skeleton:"7.0.*" app"
+#    command: sh -c "composer req --no-interaction baldinof/roadrunner-bundle"
+    command: sh -c "rr serve -c .rr.dev.yaml --debug"
 
 networks:
   anxiety:
