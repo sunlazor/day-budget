@@ -3,7 +3,8 @@ baldinof_road_runner:
     # See https://github.com/baldinof/roadrunner-bundle#kernel-reboots
     kernel_reboot:
         # if you want to use a fresh container on each request, use the `always` strategy
-        strategy: on_exception
+#        strategy: on_exception
+        strategy: always
         # Exceptions you KNOW that do not put your app in an unrecoverable state
         allowed_exceptions:
             - Symfony\Component\HttpKernel\Exception\HttpExceptionInterface
