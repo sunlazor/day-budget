@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class BudgetTableController extends AbstractController
 {
-    #[Route('/budget')]
+    #[Route('/budget', name: 'budget')]
     public function index(Request $request): Response
     {
         $form = $this->createForm(BudgetTableForm::class);
@@ -26,7 +26,7 @@ class BudgetTableController extends AbstractController
 //                ->add('title', TextType::class, ['required' => false])
 //            ;
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('budget');
         }
         return $this->render(
             'budget/base.html.twig',

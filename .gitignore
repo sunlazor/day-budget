@@ -70,3 +70,7 @@ fabric.properties
 ###> baldinof/roadrunner-bundle ###
 /bin/rr
 ###< baldinof/roadrunner-bundle ###
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###
