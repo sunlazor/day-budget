@@ -1,8 +1,25 @@
 
 <div {{ attributes }}>
-    <input type="number" data-model="max">
+    <div class="listCard">
+        <table>
+            {% for key, line in lineItems %}
+                <twig:BudgetLineItem
+                    key="{{key}}"
+                    title="{{line.title}}"
+                    amount="{{line.amount}}"
+                />
+            {% endfor %}
+        </table>
+    </div>
 
-    Generating a number between 0 and {{ max }}
-    <button data-action="live#$render">Apply</button>
-    <strong>{{ this.randomNumber }}</strong>
+    <button
+            data-action="live#action"
+            data-live-action-param="addLineItem"
+            class="btn btn-sm btn-secondary"
+            type="button"
+    ><UX:Icon name="plus" /> Add Item</button>
+
+    <div class="resultCard">
+        {{ this.total }}
+    </div>
 </div>
