@@ -28,7 +28,7 @@ services:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     container_name: postgres
     ports:
-        - "50432:5432"
+        - "5444:5432"
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production

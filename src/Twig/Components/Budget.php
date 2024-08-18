@@ -2,6 +2,8 @@
 
 namespace App\Twig\Components;
 
+use App\Entity\PersonalBudget;
+use Doctrine\Common\Collections\Collection;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -20,8 +22,11 @@ class Budget
      * - title: название траты/поступления
      * - amount: суммы траты/поступления
      */
-    #[LiveProp]
-    public array $lineItems = [];
+    #[LiveProp(useSerializerForHydration: true)]
+    public array $lineItems;
+
+    #[LiveProp(writable: ['title', 'amount'])]
+    public PersonalBudget $budget;
 
     #[LiveListener('line_item:save')]
     public function saveLineItem(#[LiveArg] int $key, #[LiveArg] string $title, #[LiveArg] float $amount): void

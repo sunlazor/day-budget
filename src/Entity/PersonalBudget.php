@@ -6,6 +6,7 @@ use App\Repository\PersonalBudgetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: PersonalBudgetRepository::class)]
 class PersonalBudget
@@ -22,6 +23,7 @@ class PersonalBudget
      * @var Collection<int, PersonalBudgetItem>
      */
     #[ORM\OneToMany(targetEntity: PersonalBudgetItem::class, mappedBy: 'budgetId', cascade: ['persist'], orphanRemoval: true)]
+    #[MaxDepth(1)]
     private Collection $personalBudgetItem;
 
     public function __construct()

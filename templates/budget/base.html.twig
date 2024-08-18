@@ -6,8 +6,9 @@
     {% for line in budgetItems %}
 
         <div>{{ line.title }}</div>
+        <div>{{ line.amount }}</div>
     {% endfor %}
 
 
-    <twig:Budget/>
+{#    <twig:Budget lineItems="{{budgetItems}}"/>#}
 {% endblock %}
