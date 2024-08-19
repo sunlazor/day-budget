@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9f70d5558de42fa7081d5f1f7a85287",
+    "content-hash": "000cf9a517bb8ae5d7214751efb6e869",
     "packages": [
         {
             "name": "baldinof/roadrunner-bundle",
@@ -5842,6 +5842,57 @@
                 }
             ],
             "time": "2024-05-31T14:55:39+00:00"
+        },
+        {
+            "name": "tomcri/htmxfony",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomcri/htmxfony.git",
+                "reference": "21f496e67aa2ef11395f32ad317038c9e991f411"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomcri/htmxfony/zipball/21f496e67aa2ef11395f32ad317038c9e991f411",
+                "reference": "21f496e67aa2ef11395f32ad317038c9e991f411",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.1",
+                "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0",
+                "symfony/twig-bundle": "^5.4 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "slevomat/coding-standard": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Htmxfony\\": "src/"
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Toma",
+                    "email": "cristi@tom.ro"
+                }
+            ],
+            "description": "Htmx SDK for Symfony",
+            "support": {
+                "issues": "https://github.com/tomcri/htmxfony/issues",
+                "source": "https://github.com/tomcri/htmxfony/tree/1.2.0"
+            },
+            "time": "2024-02-10T11:47:31+00:00"
         },
         {
             "name": "twig/extra-bundle",

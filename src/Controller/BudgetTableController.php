@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\PersonalBudget;
-use App\Entity\PersonalBudgetItem;
 use App\Repository\PersonalBudgetRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Htmxfony\Controller\HtmxControllerTrait;
+use Htmxfony\Request\HtmxRequest;
+use Htmxfony\Response\HtmxResponse;
+use Htmxfony\Template\TemplateBlock;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +17,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class BudgetTableController extends AbstractController
 {
+    use HtmxControllerTrait;
+
     private PersonalBudgetRepository $personalBudgetRepository;
 
     private EntityManagerInterface $entityManager;
@@ -29,45 +33,22 @@ class BudgetTableController extends AbstractController
     #[Route('/budget', name: 'budget')]
     public function index(Request $request): Response
     {
-//        $budget = new PersonalBudget();
-//        $budget->setOwner('Vasya');
-//        $budget->addPersonalBudgetItem(
-//            (new PersonalBudgetItem())
-//                ->setTitle('first hello')
-//                ->setAmount(100.01)
-//        );
-//        $this->entityManager->persist($budget);
-//        $this->entityManager->flush();
-
-        $readBudget = $this->personalBudgetRepository->find(1);
-        $readBudget = $readBudget ?? new PersonalBudget();
-        $readBudget->addPersonalBudgetItem(
-            (new PersonalBudgetItem())
-                ->setTitle('first hello')
-                ->setAmount(random_int(10, 100))
-        );
-        $this->entityManager->persist($readBudget);
-        $this->entityManager->flush();
-
-        $items = $readBudget->getPersonalBudgetItem();
-
-
-//        $form = $this->createForm(BudgetTableForm::class);
-//
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted()) {
-////            dump($request);
-////            $form
-////                ->add('title', TextType::class, ['required' => false])
-////            ;
-//
-//            return $this->redirectToRoute('budget');
-//        }
         return $this->render(
             'budget/base.html.twig',
-//            ['form' => $form->createView()],
-            ['budgetItems' => $items, 'budget' => $readBudget],
+        );
+    }
+
+    #[Route('/budget/items', name: 'budget-items')]
+    public function getBudgetItems(HtmxRequest $request): HtmxResponse
+    {
+        $budget = $this->personalBudgetRepository->findAll();
+        $budgetItems = ($budget[0])->getPersonalBudgetItem();
+        return $this->htmxRenderBlock(
+            new TemplateBlock(
+                'budget/components/budgetItem.html.twig',
+                'budgetItems',
+                ['budgetItems' => $budgetItems],
+            ),
         );
     }
 }

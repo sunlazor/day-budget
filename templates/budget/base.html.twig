@@ -3,12 +3,8 @@
 {% block body %}
     <h1>Budget</h1>
 
-    {% for line in budgetItems %}
+    <div class="budget-items">
+        <button hx-get="/budget/items" hx-target=".budget-items">Get items</button>
+    </div>
 
-        <div>{{ line.title }}</div>
-        <div>{{ line.amount }}</div>
-    {% endfor %}
-
-
-{#    <twig:Budget lineItems="{{budgetItems}}"/>#}
 {% endblock %}
