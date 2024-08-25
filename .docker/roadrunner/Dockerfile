@@ -5,8 +5,10 @@ FROM php:8.3-cli
 RUN apt update && apt install -y --no-install-recommends git unzip sudo
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
-#RUN install-php-extensions bcmath gd intl memcached opcache pcntl rdkafka-5.0.2 soap xdebug
-RUN install-php-extensions sockets zip pdo_pgsql pgsql
+#RUN install-php-extensions bcmath gd intl memcached opcache pcntl rdkafka-5.0.2 soap
+RUN install-php-extensions sockets zip
+RUN install-php-extensions pdo_pgsql pgsql
+RUN install-php-extensions xdebug
 
 COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
 

@@ -4,7 +4,15 @@
     <h1>Budget</h1>
 
     <div class="budget-items">
-        <button hx-get="/budget/items" hx-target=".budget-items">Get items</button>
+        <button hx-get="/budget/item/list" hx-target=".budget-items">Get items</button>
+    </div>
+
+    <div class="add-budget-item-form">
+        <form>
+            <input type="text" name="budget-item-title" placeholder="e.g. Netflix, Salary">
+            <input type="number" name="budget-item-amount" placeholder="e.g. 15.6">
+            <button hx-post="/budget/item/add" hx-target=".budget-items ol" hx-swap="beforeend">Add</button>
+        </form>
     </div>
 
 {% endblock %}

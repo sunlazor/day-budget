@@ -1,13 +1,6 @@
-{% block budgetItems %}
+{% block budgetItem %}
 
-<ol>
-    {% for line in budgetItems %}
-
-{#        <div>{{ line.title }}</div>#}
-{#        <div>{{ line.amount }}</div>#}
-        <li data-id="{{ line.id }}">{{ line.title }} - {{ line.amount }} <button>Delete</button></li>
-    {% endfor %}
-</ol>
+<li data-id="{{ budgetItem.id }}">{{ budgetItem.title }} - {{ budgetItem.amount }} <button>Delete</button></li>
 
 {% endblock %}
 

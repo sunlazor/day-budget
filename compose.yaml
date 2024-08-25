@@ -11,8 +11,9 @@ services:
       - anxiety
     volumes:
       - ./:/srv
+      - .docker/php/php-ini-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
     environment:
-      PHP_IDE_CONFIG: "serverName=localhost"
+      PHP_IDE_CONFIG: "serverName=vah"
       APP_ENV: dev
 #    command: sh -c "composer install && bin/console c:c && rr serve"
 #    command: sh -c "composer self-update --update-keys && composer diagnose && composer install && rr serve"
