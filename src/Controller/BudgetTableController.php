@@ -7,13 +7,9 @@ namespace App\Controller;
 use App\Entity\PersonalBudgetItem;
 use App\Repository\PersonalBudgetRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Htmxfony\Controller\HtmxControllerTrait;
-use Htmxfony\Request\HtmxRequest;
-use Htmxfony\Response\HtmxResponse;
-use Htmxfony\Template\TemplateBlock;
+use Seaworn\HtmxBundle\Controller\HtmxControllerTrait;
+use Seaworn\HtmxBundle\Request\HtmxRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -33,8 +29,9 @@ class BudgetTableController extends AbstractController
     }
 
     #[Route('/budget', name: 'budget')]
-    public function index(Request $request): Response
+    public function index(HtmxRequest $request): Response
     {
+//        return new Response()
         return $this->render(
             'budget/base.html.twig',
         );
@@ -42,10 +39,10 @@ class BudgetTableController extends AbstractController
 
     //    public function addBudgetItem(HtmxRequest $request)
     #[Route('/budget/item/add', name: "budget-item-add", methods: ['POST'])]
-    public function addBudgetItem(Request $request)
+    public function addBudgetItem(HtmxRequest $request)
     {
         $title = $request->request->get('budget-item-title', '');
-        $amount = $request->request->get('budget-item-amount', 0);
+        $amount = (float)$request->request->get('budget-item-amount', 0);
 
         $budget = $this->personalBudgetRepository->find(1);
         $budgetItem = (new PersonalBudgetItem())
@@ -57,26 +54,20 @@ class BudgetTableController extends AbstractController
         $this->entityManager->persist($budgetItem);
         $this->entityManager->flush();
 
-        return $this->htmxRenderBlock(
-            new TemplateBlock(
+        return $this->render(
                 'budget/components/budgetItem.html.twig',
-                'budgetItem',
                 ['budgetItem' => $budgetItem],
-            ),
         );
     }
 
     #[Route('/budget/item/list', name: 'budget-items', methods: ['GET'])]
-    public function getBudgetItems(HtmxRequest $request): HtmxResponse
+    public function getBudgetItems(HtmxRequest $request): Response
     {
         $budget = $this->personalBudgetRepository->find(1);
         $budgetItems = $budget->getPersonalBudgetItem();
-        return $this->htmxRenderBlock(
-            new TemplateBlock(
+        return $this->render(
                 'budget/components/budgetItems.html.twig',
-                'budgetItems',
                 ['budgetItems' => $budgetItems],
-            ),
         );
     }
 }
